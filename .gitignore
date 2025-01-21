@@ -1,0 +1,8 @@
+*.exe
+*.dll
+*.dcu
+*.log
+*.tmp
+Debug/
+Release/
+
