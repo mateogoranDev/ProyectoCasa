@@ -1,0 +1,102 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.DateUtils,
+  System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait,
+  FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Grids,
+  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls;
+
+type
+  TForm1 = class(TForm)
+    DBGrid1: TDBGrid;
+    BInsertarClick: TButton;
+    FDConnection1: TFDConnection;
+    FDQuery1: TFDQuery;
+    FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
+    SQLConnection1: TSQLConnection;
+    EditNombre: TEdit;
+    EditCategoria: TEdit;
+    EditEstado: TEdit;
+    EditImporte: TEdit;
+    EditDescripcion: TEdit;
+    DateTimePickerCompra: TDateTimePicker;
+    DateTimePickerDevolucion: TDateTimePicker;
+    procedure FormCreate(Sender: TObject);
+    procedure BInsertarClickClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.BInsertarClickClick(Sender: TObject);
+begin
+  try
+    // Configurar la consulta SQL con parámetros
+    FDQuery1.SQL.Text := 'INSERT INTO articulo ' +
+      '(nombre, categoria, estado, importe, descripcion, fechaCompra, fechaDevolucion) '
+      + 'VALUES (:nombre, :categoria, :estado, :importe, :descripcion, :fechaCompra, :fechaDevolucion)';
+
+    // Asignar valores a los parámetros
+    FDQuery1.ParamByName('nombre').AsString := EditNombre.Text;
+    FDQuery1.ParamByName('categoria').AsString := EditCategoria.Text;
+    FDQuery1.ParamByName('estado').AsString := EditEstado.Text;
+    FDQuery1.ParamByName('importe').AsFloat := StrToFloat(EditImporte.Text);
+    // Convertir a flotante
+    FDQuery1.ParamByName('descripcion').AsString := EditDescripcion.Text;
+    FDQuery1.ParamByName('fechaCompra').AsDate := DatePickerCompra.Date;
+    FDQuery1.ParamByName('fechaDevolucion').AsDate := DatePickerDevolucion.Date;
+
+    // Ejecutar la consulta
+    FDQuery1.ExecSQL;
+
+    ShowMessage('Registro insertado con éxito!');
+
+    // Opcional: recargar datos en el DBGrid
+    FDQuery1.SQL.Text := 'SELECT * FROM articulo';
+    FDQuery1.Active := True;
+  except
+    on E: Exception do
+      ShowMessage('Error al insertar: ' + E.Message);
+  end;
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  FDConnection: TFDConnection;
+begin
+  // Crear la conexión
+  FDConnection := TFDConnection.Create(Self);
+  try
+    FDConnection.DriverName := 'MySQL'; // Driver para MySQL
+    FDConnection.Params.Add('Server=127.0.0.1'); // Dirección del servidor
+    FDConnection.Params.Add('Port=3306'); // Puerto de MySQL
+    FDConnection.Params.Add('Database=almacen'); // Nombre de la base
+    FDConnection.Params.Add('User_Name=root'); // Usuario
+    FDConnection.Params.Add('Password=root'); // Contraseña
+
+    // Probar la conexión
+    FDConnection.Connected := True;
+
+    ShowMessage('Conexión exitosa!');
+  except
+    on E: Exception do
+      ShowMessage('Error al conectar: ' + E.Message);
+  end;
+end;
+
+end.
