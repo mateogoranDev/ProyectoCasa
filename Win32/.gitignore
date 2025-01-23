@@ -1,0 +1,33 @@
+# Archivos binarios compilados
+*.exe
+*.dll
+*.bpl
+*.dcu
+*.dcp
+*.map
+*.rsm
+
+# Archivos de configuración local
+*.local
+*.identcache
+*.tvsconfig
+*.stat
+
+# Archivos de respaldo y temporales
+*.~*
+*.bak
+*.tmp
+*.log
+
+# Archivos específicos de IDEs
+*.lck
+*.groupproj.local
+*.dproj.local
+*.remote
+
+# Carpeta de salida y temporales
+__history/
+Win32/
+Win64/
+Debug/
+Release/

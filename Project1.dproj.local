@@ -2,8 +2,13 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2025/01/17 13:58:11.000.659,=F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.pas</Transaction>
-    <Transaction>2025/01/17 15:20:17.000.734,F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.pas=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.pas</Transaction>
-    <Transaction>2025/01/17 15:20:17.000.734,F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.dfm=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.dfm</Transaction>
-    <Transaction>2025/01/17 15:22:28.000.096,F:\Datos\Informatica2 (Roberto)\Delphi\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj</Transaction>
+    <Transaction>2025/01/17 15:20:17.000.734,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.pas=F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.pas</Transaction>
+    <Transaction>2025/01/17 15:20:17.000.734,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.dfm=F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.dfm</Transaction>
+    <Transaction>2025/01/17 15:22:28.000.096,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\Project1.dproj</Transaction>
+    <Transaction>2025/01/21 13:56:25.000.787,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj</Transaction>
+    <Transaction>2025/01/21 16:53:25.000.009,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj</Transaction>
+    <Transaction>2025/01/23 10:18:26.540,=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit2.pas</Transaction>
+    <Transaction>2025/01/23 10:19:20.523,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.pas=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit2.pas</Transaction>
+    <Transaction>2025/01/23 10:19:20.523,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.dfm=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit2.dfm</Transaction>
   </Transactions>
 </BorlandProject>

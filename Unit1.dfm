@@ -1,252 +1,368 @@
 object Form1: TForm1
-  Left = 0
+  Left = 3
   Top = 0
+  BorderStyle = bsDialog
+  BorderWidth = 3
   Caption = 'Form1'
-  ClientHeight = 615
-  ClientWidth = 690
+  ClientHeight = 637
+  ClientWidth = 1475
   Color = clAqua
   Font.Charset = DEFAULT_CHARSET
-  Font.Color = clWindowText
+  Font.Color = clGrayText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  OnCreate = FormCreate
+  Position = poDesigned
   TextHeight = 15
   object DBGrid1: TDBGrid
-    Left = 96
-    Top = 8
-    Width = 289
-    Height = 401
+    Left = 0
+    Top = 59
+    Width = 499
+    Height = 263
+    DataSource = DataSource1
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
+    TitleFont.Color = clGrayText
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
   end
-  object BInsertarClick: TButton
-    Left = 391
-    Top = 310
-    Width = 75
-    Height = 25
-    Caption = 'Insertar'
-    TabOrder = 1
-    OnClick = BInsertarClickClick
-  end
-  object EditNombre: TEdit
-    Left = 488
-    Top = 50
-    Width = 137
-    Height = 23
-    HideSelection = False
-    TabOrder = 2
-    Text = 'Nombre'
-  end
-  object EditCategoria: TEdit
-    Left = 488
-    Top = 108
-    Width = 137
-    Height = 23
-    TabOrder = 3
-    Text = 'Categoria'
-  end
-  object EditImporte: TEdit
-    Left = 391
-    Top = 137
-    Width = 91
-    Height = 23
-    Alignment = taCenter
+  object GBInsertarArticulos: TGroupBox
+    AlignWithMargins = True
+    Left = 521
+    Top = 59
+    Width = 265
+    Height = 304
+    Caption = 'INSERTAR ARTICULOS'
     Color = clMoneyGreen
-    TabOrder = 4
-    Text = 'Importe:'
-  end
-  object EditDescripcion: TEdit
-    Left = 488
-    Top = 79
-    Width = 137
-    Height = 23
-    TabOrder = 5
-    Text = 'Descripcion'
-  end
-  object DateTimePickerCompra: TDateTimePicker
-    Left = 488
-    Top = 166
-    Width = 137
-    Height = 23
-    Date = 45677.000000000000000000
-    Time = 0.701945879627601200
-    TabOrder = 6
-  end
-  object DateTimePickerDevolucion: TDateTimePicker
-    Left = 488
-    Top = 195
-    Width = 137
-    Height = 23
-    Date = 45677.000000000000000000
-    Time = 0.702417476852133400
-    TabOrder = 7
-  end
-  object PCompra: TPanel
-    Left = 391
-    Top = 166
-    Width = 91
-    Height = 23
-    Caption = 'Fecha Compra'
-    Color = clMoneyGreen
-    ParentBackground = False
-    TabOrder = 8
-  end
-  object PDevolucion: TPanel
-    Left = 391
-    Top = 195
-    Width = 91
-    Height = 23
-    Caption = 'Fecha Retorno'
-    Color = clMoneyGreen
-    ParentBackground = False
-    TabOrder = 9
-  end
-  object PNombre: TPanel
-    Left = 391
-    Top = 46
-    Width = 91
-    Height = 23
-    Caption = 'Nombre:'
-    Color = clMoneyGreen
-    ParentBackground = False
-    TabOrder = 10
-  end
-  object PDescripcion: TPanel
-    Left = 391
-    Top = 79
-    Width = 91
-    Height = 23
-    Caption = 'Descripcion:'
-    Color = clMoneyGreen
-    ParentBackground = False
-    TabOrder = 11
-  end
-  object Panel3: TPanel
-    Left = 391
-    Top = 108
-    Width = 91
-    Height = 23
-    Caption = 'Categoria:'
-    Color = clMoneyGreen
-    ParentBackground = False
-    TabOrder = 12
-  end
-  object GBEstado: TGroupBox
-    Left = 391
-    Top = 224
-    Width = 100
-    Height = 80
-    Caption = 'Estado'
-    Color = clMoneyGreen
+    DefaultHeaderFont = False
+    HeaderFont.Charset = DEFAULT_CHARSET
+    HeaderFont.Color = clBtnShadow
+    HeaderFont.Height = -12
+    HeaderFont.Name = 'Segoe UI'
+    HeaderFont.Style = [fsBold]
     ParentBackground = False
     ParentColor = False
-    TabOrder = 13
-    object REstado1: TRadioButton
-      Left = 3
-      Top = 17
-      Width = 113
-      Height = 15
-      Caption = 'Vendido'
+    TabOrder = 1
+    object GBCategoria: TGroupBox
+      Left = 13
+      Top = 166
+      Width = 100
+      Height = 97
+      Caption = 'Categoria'
+      Color = clMoneyGreen
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
       TabOrder = 0
+      object RBCategoria1: TRadioButton
+        Left = 3
+        Top = 17
+        Width = 118
+        Height = 15
+        Caption = 'Comic'
+        TabOrder = 0
+      end
+      object RBCategoria2: TRadioButton
+        Left = 3
+        Top = 36
+        Width = 113
+        Height = 15
+        Caption = 'Figura'
+        TabOrder = 1
+      end
+      object RBCategoria3: TRadioButton
+        Left = 6
+        Top = 57
+        Width = 113
+        Height = 15
+        Caption = 'Electronica'
+        TabOrder = 2
+      end
+      object RBCategoria4: TRadioButton
+        Left = 3
+        Top = 79
+        Width = 113
+        Height = 15
+        Caption = 'Otro'
+        TabOrder = 3
+      end
     end
-    object REstado2: TRadioButton
-      Left = 3
-      Top = 38
-      Width = 113
-      Height = 15
-      Caption = 'Conservado'
+    object GBEstado: TGroupBox
+      Left = 119
+      Top = 166
+      Width = 100
+      Height = 80
+      Caption = 'Estado'
+      Color = clMoneyGreen
+      ParentBackground = False
+      ParentColor = False
       TabOrder = 1
+      object REstado1: TRadioButton
+        Left = 3
+        Top = 17
+        Width = 113
+        Height = 15
+        Caption = 'Vendido'
+        TabOrder = 0
+      end
+      object REstado2: TRadioButton
+        Left = 3
+        Top = 38
+        Width = 113
+        Height = 15
+        Caption = 'Conservado'
+        TabOrder = 1
+      end
+      object REstado3: TRadioButton
+        Left = 3
+        Top = 59
+        Width = 113
+        Height = 15
+        Caption = 'Disponible'
+        TabOrder = 2
+      end
     end
-    object REstado3: TRadioButton
-      Left = 3
-      Top = 59
-      Width = 113
-      Height = 15
-      Caption = 'Disponible'
+    object EditDescripcion: TEdit
+      Left = 111
+      Top = 46
+      Width = 137
+      Height = 23
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGrayText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 8
+      Text = 'Descripcion'
+    end
+    object EditNombre: TEdit
+      Left = 111
+      Top = 17
+      Width = 137
+      Height = 23
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      HideSelection = False
+      ParentFont = False
+      TabOrder = 12
+      Text = 'Nombre'
+    end
+    object EditImporte: TEdit
+      Left = 111
+      Top = 75
+      Width = 137
+      Height = 23
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGrayText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 2
+      Text = 'Precio compra'
+    end
+    object BInsertarClick: TButton
+      Left = 11
+      Top = 269
+      Width = 75
+      Height = 25
+      Caption = 'Insertar'
+      TabOrder = 3
+      OnClick = BInsertarClickClick
+    end
+    object DateTimePickerCompra: TDateTimePicker
+      Left = 111
+      Top = 108
+      Width = 137
+      Height = 23
+      Date = 45677.000000000000000000
+      Time = 0.701945879627601200
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGrayText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 4
+    end
+    object DateTimePickerDevolucion: TDateTimePicker
+      Left = 111
+      Top = 137
+      Width = 137
+      Height = 23
+      Date = 45677.000000000000000000
+      Time = 0.702417476852133400
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGrayText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+    end
+    object PCompra: TPanel
+      Tag = 2
+      Left = 15
+      Top = 108
+      Width = 90
+      Height = 23
+      Caption = 'Fecha Compra'
+      Color = clMoneyGreen
+      ParentBackground = False
+      TabOrder = 6
+    end
+    object PDescripcion: TPanel
+      Tag = 2
+      Left = 15
+      Top = 46
+      Width = 90
+      Height = 23
+      Caption = 'Descripcion:'
+      Color = clMoneyGreen
+      ParentBackground = False
+      TabOrder = 7
+    end
+    object PDevolucion: TPanel
+      Tag = 2
+      Left = 15
+      Top = 137
+      Width = 90
+      Height = 23
+      Caption = 'Fecha Retorno'
+      Color = clMoneyGreen
+      ParentBackground = False
+      TabOrder = 9
+    end
+    object PImporte: TEdit
+      Tag = 2
+      Left = 15
+      Top = 75
+      Width = 90
+      Height = 23
+      Alignment = taCenter
+      Color = clMoneyGreen
+      TabOrder = 10
+      Text = 'Importe:'
+    end
+    object PNombre: TPanel
+      Tag = 2
+      Left = 15
+      Top = 17
+      Width = 90
+      Height = 23
+      Caption = 'Nombre:'
+      Color = clMoneyGreen
+      ParentBackground = False
+      TabOrder = 11
     end
   end
-  object Edit1: TEdit
-    Left = 488
-    Top = 137
-    Width = 137
-    Height = 23
-    TabOrder = 14
-    Text = 'Precio compra'
-  end
-  object GBCategoria: TGroupBox
-    Left = 513
-    Top = 224
-    Width = 100
-    Height = 97
-    Caption = 'Categoria'
-    Color = clMoneyGreen
+  object BListado: TButton
+    Left = 0
+    Top = 0
+    Width = 138
+    Height = 53
+    Caption = 'Listar '#13#10'articulos'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
+    Font.Height = -15
+    Font.Name = 'Gill Sans Ultra Bold Condensed'
     Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    OnClick = BListadoClick
+  end
+  object GBEliminarArticulos: TGroupBox
+    Left = 1128
+    Top = 114
+    Width = 241
+    Height = 105
+    Caption = 'ELIMINAR ARTICULOS'
+    Color = clMoneyGreen
     ParentBackground = False
     ParentColor = False
-    ParentFont = False
-    TabOrder = 15
-    object RBCategoria1: TRadioButton
-      Left = 3
-      Top = 15
-      Width = 118
-      Height = 15
-      Caption = 'Comic'
+    TabOrder = 3
+    object PIDByBorrar: TPanel
+      Left = 5
+      Top = 18
+      Width = 124
+      Height = 23
+      Caption = 'Eliminar por n'#250'mero:'
       TabOrder = 0
     end
-    object RBCategoria2: TRadioButton
-      Left = 3
-      Top = 36
-      Width = 113
-      Height = 15
-      Caption = 'Figura'
+    object EBorrar: TEdit
+      Left = 135
+      Top = 18
+      Width = 90
+      Height = 23
       TabOrder = 1
+      Text = ' ID para borrar'
     end
-    object RBCategoria3: TRadioButton
-      Left = 3
-      Top = 57
-      Width = 113
-      Height = 15
-      Caption = 'Electronica'
+    object BBorrar: TButton
+      Left = 5
+      Top = 47
+      Width = 94
+      Height = 23
+      Caption = 'Eliminar registro'
       TabOrder = 2
+      OnClick = BBorrarClick
     end
-    object RBCategoria4: TRadioButton
-      Left = 3
-      Top = 78
-      Width = 113
-      Height = 15
-      Caption = 'Otro'
-      TabOrder = 3
+  end
+  object PageControl1: TPageControl
+    Left = 8
+    Top = 328
+    Width = 273
+    Height = 185
+    ActivePage = TabSheet1
+    TabOrder = 4
+    object TabSheet1: TTabSheet
+      Caption = 'ARTICULO'
+      object ButtonArticulo: TButton
+        Left = 190
+        Top = 130
+        Width = 75
+        Height = 25
+        Caption = 'Detalles'
+        TabOrder = 0
+      end
     end
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Server=localhost'
       'DriverID=MySQL'
-      'User_Name=root')
-    Left = 8
-    Top = 352
+      'Database=almacen'
+      'Server=127.0.0.1'
+      'Port=3306'
+      'User_Name=root'
+      'Password=root')
+    Left = 24
+    Top = 544
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 32
-    Top = 352
+    Left = 8
+    Top = 560
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    Left = 24
-    Top = 352
+    Left = 8
+    Top = 528
   end
   object SQLConnection1: TSQLConnection
-    Left = 16
-    Top = 352
+    Left = 48
+    Top = 544
+  end
+  object DataSource1: TDataSource
+    DataSet = FDQuery1
+    Left = 8
+    Top = 576
   end
 end

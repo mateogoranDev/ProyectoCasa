@@ -11,20 +11,22 @@ uses
   FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls, Vcl.ExtCtrls;
+  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls, Vcl.ExtCtrls, frmArticulo;
 
 type
   TForm1 = class(TForm)
-    DBGrid1: TDBGrid;
-    BInsertarClick: TButton;
+
+    // Conexión
     FDConnection1: TFDConnection;
     FDQuery1: TFDQuery;
     FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink;
     SQLConnection1: TSQLConnection;
-    //Campos base de datos
+    DataSource1: TDataSource;
+
+    // Campos base de datos
+    DBGrid1: TDBGrid;
+    BInsertarClick: TButton;
     EditNombre: TEdit;
-    EditCategoria: TEdit;
-    EditImporte: TEdit;
     EditDescripcion: TEdit;
     DateTimePickerCompra: TDateTimePicker;
     DateTimePickerDevolucion: TDateTimePicker;
@@ -32,23 +34,33 @@ type
     PDevolucion: TPanel;
     PNombre: TPanel;
     PDescripcion: TPanel;
-    Panel3: TPanel;
     GBEstado: TGroupBox;
     REstado1: TRadioButton;
     REstado2: TRadioButton;
     REstado3: TRadioButton;
-    Edit1: TEdit;
+    EditImporte: TEdit;
+    EBorrar: TEdit;
     GBCategoria: TGroupBox;
     RBCategoria1: TRadioButton;
     RBCategoria2: TRadioButton;
     RBCategoria3: TRadioButton;
     RBCategoria4: TRadioButton;
+    BListado: TButton;
+    GBInsertarArticulos: TGroupBox;
 
+    PIDByBorrar: TPanel;
+    GBEliminarArticulos: TGroupBox;
+    BBorrar: TButton;
+    PageControl1: TPageControl;
+    ButtonArticulo: TButton;
+    TabSheet1: TTabSheet;
 
-    //Procedimientos
+    // Procedimientos
     procedure FormCreate(Sender: TObject);
-    procedure BInsertarClickClick(Sender: TObject);
-
+    procedure BInsertarClickClick(Sender: TObject); // Insertar registros
+    procedure BListadoClick(Sender: TObject);
+    procedure BBorrarClick(Sender: TObject);
+    procedure ButtonArticuloClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -58,6 +70,7 @@ type
 
 var
   Form1: TForm1;
+  frmArticulo: TfrmArticulo; // Declara la variable global de tipo TfrmArticulo
 
 implementation
 
@@ -85,20 +98,33 @@ begin
       estado := 'conservado'
     else if REstado3.Checked then
       estado := 'disponible';
+    if not(RBCategoria1.Checked or RBCategoria2.Checked or
+      RBCategoria3.Checked or RBCategoria4.Checked) then
+    begin
+      ShowMessage('Por favor, selecciona una categoría.');
+      Exit;
+    end;
+
+    if not(REstado1.Checked or REstado2.Checked or REstado3.Checked) then
+    begin
+      ShowMessage('Por favor, selecciona un estado.');
+      Exit;
+    end;
 
     // Configurar la consulta SQL con parámetros
     FDQuery1.SQL.Text := 'INSERT INTO articulo ' +
-      '(nombre, categoria, estado, importe, descripcion, fechaCompra, fechaDevolucion) ' +
-      'VALUES (:nombre, :categoria, :estado, :importe, :descripcion, :fechaCompra, :fechaDevolucion)';
+      '(nombre, categoria, estado, importe, descripcion, fechaCompra, fechaDevolucion) '
+      + 'VALUES (:nombre, :categoria, :estado, :importe, :descripcion, :fechaCompra, :fechaDevolucion)';
 
     // Asignar valores a los parámetros
     FDQuery1.ParamByName('nombre').AsString := EditNombre.Text;
-    FDQuery1.ParamByName('categoria').AsString := categoria; // Asignar la categoría
+    FDQuery1.ParamByName('categoria').AsString := categoria;
     FDQuery1.ParamByName('estado').AsString := estado; // Asignar el estado
     FDQuery1.ParamByName('importe').AsFloat := StrToFloat(EditImporte.Text);
     FDQuery1.ParamByName('descripcion').AsString := EditDescripcion.Text;
     FDQuery1.ParamByName('fechaCompra').AsDate := DateTimePickerCompra.Date;
-    FDQuery1.ParamByName('fechaDevolucion').AsDate := DateTimePickerDevolucion.Date;
+    FDQuery1.ParamByName('fechaDevolucion').AsDate :=
+      DateTimePickerDevolucion.Date;
 
     // Ejecutar la consulta
     FDQuery1.ExecSQL;
@@ -114,13 +140,84 @@ begin
   end;
 end;
 
+// Listar todos los articulos de la base de datos
+procedure TForm1.BListadoClick(Sender: TObject);
+begin
+  try
+    // cerrar  dataset antes de realizar una nueva consulta
+    if FDQuery1.Active then
+      FDQuery1.Close;
 
+    // Configura y ejecuta la consulta SQL
+    FDQuery1.SQL.Text := 'SELECT * FROM articulo';
+    FDQuery1.Open; // Abre el conjunto de datos y carga los resultados
+
+    // Mensaje opcional
+    ShowMessage('Artículos listados correctamente.');
+  except
+    on E: Exception do
+      ShowMessage('Error al listar los artículos: ' + E.Message);
+  end;
+end;
+
+procedure TForm1.ButtonArticuloClick(Sender: TObject);
+begin
+  frmArticulo := TfrmArticulo.Create(Self); // Crear instancia del formulario
+  try
+    frmArticulo.ShowModal; // Mostrar el formulario de manera modal
+  finally
+    frmArticulo.Free; // Liberar la memoria después de cerrarlo
+  end;
+end;
+
+
+// Borrar articulo por ID
+procedure TForm1.BBorrarClick(Sender: TObject);
+var
+  IdArticulo: Integer;
+begin
+  // Verifica si el TEdit tiene contenido
+  if EBorrar.Text = '' then
+  begin
+    ShowMessage('Por favor, introduce un ID de artículo.');
+    Exit;
+  end;
+
+  // Intenta convertir el texto a un número
+  if not TryStrToInt(EBorrar.Text, IdArticulo) then
+  begin
+    ShowMessage('El ID del artículo debe ser un número válido.');
+    Exit;
+  end;
+
+  try
+    // Configura el SQL para eliminar el artículo
+    FDQuery1.SQL.Text := 'DELETE FROM articulo WHERE idArticulo = :IdArticulo';
+    FDQuery1.Params.ParamByName('IdArticulo').AsInteger := IdArticulo;
+
+    // Ejecutar el comando DELETE
+    FDQuery1.ExecSQL;
+
+    // Verificar si se eliminó algún registro
+    if FDQuery1.RowsAffected = 0 then
+    begin
+      ShowMessage('El ID del artículo no existe en la base de datos.');
+      Exit;
+    end;
+
+    ShowMessage('Artículo eliminado correctamente.');
+  except
+    on E: Exception do
+      ShowMessage('Error al eliminar el artículo: ' + E.Message);
+  end;
+end;
+
+// Configuracion de la base de datos
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   try
     // Configurar el DriverID explícitamente
-    FDConnection1.Params.Clear; // Limpia los parámetros para evitar conflictos
-    FDConnection1.DriverName := 'MySQL';
+    FDConnection1.Params.Clear;
     FDConnection1.Params.Add('DriverID=MySQL');
     FDConnection1.Params.Add('Server=127.0.0.1');
     FDConnection1.Params.Add('Port=3306');
@@ -131,10 +228,12 @@ begin
     // Probar la conexión
     FDConnection1.Connected := True;
 
-    ShowMessage('Conexión exitosa!');
+    ShowMessage('Conexión realizada con exito');
   except
     on E: Exception do
+    begin
       ShowMessage('Error al conectar: ' + E.Message);
+    end;
   end;
 end;
 
