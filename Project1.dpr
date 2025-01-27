@@ -2,8 +2,7 @@ program Project1;
 
 uses
   Vcl.Forms,
-  Unit1 in '..\ProyectoCasa\Unit1.pas' {Form1},
-  frmArticulo in 'F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.pas' {Form2};
+  Unit1 in '..\ProyectoCasa\Unit1.pas' {Form1};
 
 {$R *.res}
 

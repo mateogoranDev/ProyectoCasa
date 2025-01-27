@@ -11,7 +11,7 @@ uses
   FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls, Vcl.ExtCtrls, frmArticulo;
+  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls, Vcl.ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -60,7 +60,6 @@ type
     procedure BInsertarClickClick(Sender: TObject); // Insertar registros
     procedure BListadoClick(Sender: TObject);
     procedure BBorrarClick(Sender: TObject);
-    procedure ButtonArticuloClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -70,7 +69,6 @@ type
 
 var
   Form1: TForm1;
-  frmArticulo: TfrmArticulo; // Declara la variable global de tipo TfrmArticulo
 
 implementation
 
@@ -157,16 +155,6 @@ begin
   except
     on E: Exception do
       ShowMessage('Error al listar los artículos: ' + E.Message);
-  end;
-end;
-
-procedure TForm1.ButtonArticuloClick(Sender: TObject);
-begin
-  frmArticulo := TfrmArticulo.Create(Self); // Crear instancia del formulario
-  try
-    frmArticulo.ShowModal; // Mostrar el formulario de manera modal
-  finally
-    frmArticulo.Free; // Liberar la memoria después de cerrarlo
   end;
 end;
 
