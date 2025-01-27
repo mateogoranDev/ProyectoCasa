@@ -1,9 +1,9 @@
-object Form1: TForm1
+object Articulos: TArticulos
   Left = 3
   Top = 0
   BorderStyle = bsDialog
   BorderWidth = 3
-  Caption = 'Form1'
+  Caption = 'Articulos'
   ClientHeight = 637
   ClientWidth = 1475
   Color = clAqua
@@ -322,9 +322,9 @@ object Form1: TForm1
     Top = 328
     Width = 273
     Height = 185
-    ActivePage = TabSheet1
+    ActivePage = TArticulo
     TabOrder = 4
-    object TabSheet1: TTabSheet
+    object TArticulo: TTabSheet
       Caption = 'ARTICULO'
       object ButtonArticulo: TButton
         Left = 190
@@ -333,7 +333,12 @@ object Form1: TForm1
         Height = 25
         Caption = 'Detalles'
         TabOrder = 0
+        OnClick = ButtonArticuloClick
       end
+    end
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+      ImageIndex = 1
     end
   end
   object FDConnection1: TFDConnection

@@ -123,11 +123,11 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\ProyectoCasa\Unit1.pas">
-            <Form>Form1</Form>
+        <DCCReference Include="Unit1.pas">
+            <Form>Articulos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.pas">
+        <DCCReference Include="FormularioArticulo.pas">
             <Form>Form2</Form>
             <FormType>dfm</FormType>
         </DCCReference>

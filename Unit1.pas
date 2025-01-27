@@ -11,10 +11,10 @@ uses
   FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls, Vcl.ExtCtrls, frmArticulo;
+  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls, Vcl.ExtCtrls, FormularioArticulo;
 
 type
-  TForm1 = class(TForm)
+  TArticulos = class(TForm)
 
     // Conexión
     FDConnection1: TFDConnection;
@@ -53,6 +53,7 @@ type
     BBorrar: TButton;
     PageControl1: TPageControl;
     ButtonArticulo: TButton;
+    TArticulo: TTabSheet;
     TabSheet1: TTabSheet;
 
     // Procedimientos
@@ -61,6 +62,7 @@ type
     procedure BListadoClick(Sender: TObject);
     procedure BBorrarClick(Sender: TObject);
     procedure ButtonArticuloClick(Sender: TObject);
+  //  procedure ButtonArticuloClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -69,14 +71,16 @@ type
   end;
 
 var
-  Form1: TForm1;
-  frmArticulo: TfrmArticulo; // Declara la variable global de tipo TfrmArticulo
+  Articulos: TArticulos;
+ // frmArticulo: TfrmArticulo; // Declara la variable global de tipo TfrmArticulo
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.BInsertarClickClick(Sender: TObject);
+
+
+procedure TArticulos.BInsertarClickClick(Sender: TObject);
 var
   categoria, estado: string;
 begin
@@ -141,7 +145,7 @@ begin
 end;
 
 // Listar todos los articulos de la base de datos
-procedure TForm1.BListadoClick(Sender: TObject);
+procedure TArticulos.BListadoClick(Sender: TObject);
 begin
   try
     // cerrar  dataset antes de realizar una nueva consulta
@@ -160,18 +164,14 @@ begin
   end;
 end;
 
-procedure TForm1.ButtonArticuloClick(Sender: TObject);
+
+procedure TArticulos.ButtonArticuloClick(Sender: TObject);
 begin
-  frmArticulo := TfrmArticulo.Create(Self); // Crear instancia del formulario
-  try
-    frmArticulo.ShowModal; // Mostrar el formulario de manera modal
-  finally
-    frmArticulo.Free; // Liberar la memoria después de cerrarlo
-  end;
+
 end;
 
 // Borrar articulo por ID
-procedure TForm1.BBorrarClick(Sender: TObject);
+procedure TArticulos.BBorrarClick(Sender: TObject);
 var
   IdArticulo: Integer;
 begin
@@ -212,10 +212,10 @@ begin
 end;
 
 // Configuracion de la base de datos
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TArticulos.FormCreate(Sender: TObject);
 begin
   try
-    // Configurar el DriverID explícitamente
+    // Configurar el DriverID
     FDConnection1.Params.Clear;
     FDConnection1.Params.Add('DriverID=MySQL');
     FDConnection1.Params.Add('Server=127.0.0.1');

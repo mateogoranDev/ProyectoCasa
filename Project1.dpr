@@ -2,15 +2,16 @@ program Project1;
 
 uses
   Vcl.Forms,
-  Unit1 in '..\ProyectoCasa\Unit1.pas' {Form1},
-  frmArticulo in 'F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.pas' {Form2};
+  Unit1 in 'Unit1.pas' {Articulos},
+  FormularioArticulo in 'FormularioArticulo.pas' {Form2};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TArticulos, Articulos);
+ //Application.CreateForm(TForm2, Form2);
   Application.Run;
 
 end.

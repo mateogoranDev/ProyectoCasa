@@ -1,0 +1,45 @@
+unit FormularioArticulo;
+interface
+
+uses
+  Vcl.Forms, Vcl.Controls, Vcl.StdCtrls, Vcl.Graphics, Vcl.ExtCtrls, Vcl.Dialogs;
+
+type
+  TfrmArticulo = class(TForm)
+    imgArticulo: TImage;
+    OpenDialog1: TOpenDialog;
+    ButtonCargarFoto: TButton;
+    procedure ButtonCargarFotoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    ImagenRuta: string; // Variable para almacenar la ruta de la imagen seleccionada
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmArticulo.ButtonCargarFotoClick(Sender: TObject);
+begin
+  // Establecer un filtro para solo mostrar imágenes
+  OpenDialog1.Filter := 'Imágenes|*.jpg;*.jpeg;*.png;*.bmp|Todos los archivos|*.*';
+
+  // Verificar si el usuario seleccionó un archivo
+  if OpenDialog1.Execute then
+  begin
+    // Cargar la imagen en el control TImage
+    imgArticulo.Picture.LoadFromFile(OpenDialog1.FileName);
+
+    // Guardar la ruta de la imagen seleccionada
+    ImagenRuta := OpenDialog1.FileName;
+
+    // Opcional: Confirmar que la imagen fue cargada
+    ShowMessage('Imagen cargada correctamente.');
+  end
+  else
+    ShowMessage('No se seleccionó ninguna imagen.');
+end;
+
+end.
