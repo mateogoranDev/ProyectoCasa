@@ -11,7 +11,7 @@ uses
   FireDAC.Phys.MySQL, FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.Grids,
-  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls, Vcl.ExtCtrls;
+  Vcl.DBGrids, Data.SqlExpr, Vcl.ComCtrls, Vcl.ExtCtrls, Unit2, Vcl.Buttons;
 
 type
   TForm1 = class(TForm)
@@ -51,18 +51,20 @@ type
     PIDByBorrar: TPanel;
     GBEliminarArticulos: TGroupBox;
     BBorrar: TButton;
-    PageControl1: TPageControl;
-    ButtonArticulo: TButton;
-    TabSheet1: TTabSheet;
+    BDetalles: TButton;
+    GBDetalleArticulos: TGroupBox;
+    PArticuloDetalle: TPanel;
+    LTitulo: TLabel;
+    SpeedButton1: TSpeedButton;
 
     // Procedimientos
     procedure FormCreate(Sender: TObject);
     procedure BInsertarClickClick(Sender: TObject); // Insertar registros
     procedure BListadoClick(Sender: TObject);
     procedure BBorrarClick(Sender: TObject);
-
-  private
-    { Private declarations }
+    procedure BDetallesClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure AjustarAnchoColumnas(Grid: TDBGrid; AnchoEnCaracteres: Integer);
   public
     { Public declarations }
   end;
@@ -73,6 +75,41 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm1.AjustarAnchoColumnas(Grid: TDBGrid;
+  AnchoEnCaracteres: Integer);
+var
+  i: Integer;
+  Canvas: TCanvas;
+  Ancho: Integer;
+begin
+  Canvas := Grid.Canvas;
+  Ancho := Canvas.TextWidth(StringOfChar('c', AnchoEnCaracteres));
+  // Calcula el ancho en píxeles
+  for i := 0 to Grid.Columns.Count - 1 do
+    Grid.Columns[i].Width := Ancho;
+  // Aplica el ancho calculado a todas las columnas
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  // Configuración del título
+  LTitulo.Caption := 'Gestión de Artículos';
+  LTitulo.Font.Size := 20;
+  LTitulo.Font.Style := [fsBold];
+  LTitulo.Alignment := taCenter;
+
+end;
+
+procedure TForm1.BDetallesClick(Sender: TObject);
+begin
+  // Crear y mostrar Form2, pasando los datos
+  Form2 := TForm2.Create(Self); // Crear Form2
+  Form2.SetArticuloDatos(EditNombre.Text, EditDescripcion.Text,
+    EditImporte.Text, nil);
+
+  Form2.Show; // Mostrar Form2
+end;
 
 procedure TForm1.BInsertarClickClick(Sender: TObject);
 var
@@ -117,7 +154,7 @@ begin
     // Asignar valores a los parámetros
     FDQuery1.ParamByName('nombre').AsString := EditNombre.Text;
     FDQuery1.ParamByName('categoria').AsString := categoria;
-    FDQuery1.ParamByName('estado').AsString := estado; // Asignar el estado
+    FDQuery1.ParamByName('estado').AsString := estado;
     FDQuery1.ParamByName('importe').AsFloat := StrToFloat(EditImporte.Text);
     FDQuery1.ParamByName('descripcion').AsString := EditDescripcion.Text;
     FDQuery1.ParamByName('fechaCompra').AsDate := DateTimePickerCompra.Date;
@@ -142,13 +179,16 @@ end;
 procedure TForm1.BListadoClick(Sender: TObject);
 begin
   try
-    // cerrar  dataset antes de realizar una nueva consulta
+    // Cerrar dataset antes de realizar una nueva consulta
     if FDQuery1.Active then
       FDQuery1.Close;
 
     // Configura y ejecuta la consulta SQL
     FDQuery1.SQL.Text := 'SELECT * FROM articulo';
     FDQuery1.Open; // Abre el conjunto de datos y carga los resultados
+
+    // Ajustar las columnas a un ancho fijo de 10 caracteres
+    AjustarAnchoColumnas(DBGrid1, 12);
 
     // Mensaje opcional
     ShowMessage('Artículos listados correctamente.');
@@ -197,12 +237,15 @@ begin
     on E: Exception do
       ShowMessage('Error al eliminar el artículo: ' + E.Message);
   end;
+
 end;
 
 // Configuracion de la base de datos
 procedure TForm1.FormCreate(Sender: TObject);
 begin
+
   try
+
     // Configurar el DriverID explícitamente
     FDConnection1.Params.Clear;
     FDConnection1.Params.Add('DriverID=MySQL');
@@ -222,6 +265,7 @@ begin
       ShowMessage('Error al conectar: ' + E.Message);
     end;
   end;
+
 end;
 
 end.

@@ -2,24 +2,26 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2025/01/17 13:58:11.000.659,=F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.pas</Transaction>
-    <Transaction>2025/01/17 15:20:17.000.734,F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.dfm=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.dfm</Transaction>
-    <Transaction>2025/01/17 15:20:17.000.734,F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.pas=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.pas</Transaction>
-    <Transaction>2025/01/17 15:22:28.000.096,F:\Datos\Informatica2 (Roberto)\Delphi\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj</Transaction>
+    <Transaction>2025/01/17 15:20:17.000.734,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.pas=F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.pas</Transaction>
+    <Transaction>2025/01/17 15:20:17.000.734,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.dfm=F:\Datos\Informatica2 (Roberto)\Delphi\Unit1.dfm</Transaction>
+    <Transaction>2025/01/17 15:22:28.000.096,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\Project1.dproj</Transaction>
     <Transaction>2025/01/21 13:56:25.000.787,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj</Transaction>
     <Transaction>2025/01/21 16:53:25.000.009,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj</Transaction>
     <Transaction>2025/01/23 10:18:26.000.540,=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit2.pas</Transaction>
-    <Transaction>2025/01/23 10:19:20.000.523,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit2.dfm=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.dfm</Transaction>
-    <Transaction>2025/01/23 10:19:20.000.523,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit2.pas=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.pas</Transaction>
-    <Transaction>2025/01/23 13:01:17.000.453,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.dfm=C:\Users\informatica2\Desktop\ProyectoCasa\Unit1.dfm</Transaction>
-    <Transaction>2025/01/23 13:01:17.000.453,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.pas=C:\Users\informatica2\Desktop\ProyectoCasa\Unit1.pas</Transaction>
-    <Transaction>2025/01/23 13:03:02.000.881,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Project1.dproj</Transaction>
-    <Transaction>2025/01/23 13:03:26.000.092,C:\Users\informatica2\Desktop\ProyectoCasa\Unit1.pas=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit1.pas</Transaction>
-    <Transaction>2025/01/23 13:03:26.000.092,C:\Users\informatica2\Desktop\ProyectoCasa\Unit1.dfm=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit1.dfm</Transaction>
+    <Transaction>2025/01/23 10:19:20.000.523,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.dfm=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit2.dfm</Transaction>
+    <Transaction>2025/01/23 10:19:20.000.523,F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\frmArticulo.pas=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit2.pas</Transaction>
+    <Transaction>2025/01/23 13:01:17.000.453,C:\Users\informatica2\Desktop\ProyectoCasa\Unit1.pas=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.pas</Transaction>
+    <Transaction>2025/01/23 13:01:17.000.453,C:\Users\informatica2\Desktop\ProyectoCasa\Unit1.dfm=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Unit1.dfm</Transaction>
+    <Transaction>2025/01/23 13:03:02.000.881,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Project1.dproj=F:\Datos\Informatica2 (Roberto)\Delphi\ProyectoCasa\Project1.dproj</Transaction>
+    <Transaction>2025/01/23 13:03:26.000.092,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit1.pas=C:\Users\informatica2\Desktop\ProyectoCasa\Unit1.pas</Transaction>
+    <Transaction>2025/01/23 13:03:26.000.092,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit1.dfm=C:\Users\informatica2\Desktop\ProyectoCasa\Unit1.dfm</Transaction>
     <Transaction>2025/01/23 13:34:44.000.402,=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit3.pas</Transaction>
-    <Transaction>2025/01/23 13:36:13.000.433,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\frmArticulo.dfm=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit3.dfm</Transaction>
-    <Transaction>2025/01/23 13:36:13.000.433,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\frmArticulo.pas=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit3.pas</Transaction>
+    <Transaction>2025/01/23 13:36:13.000.433,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit3.dfm=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\frmArticulo.dfm</Transaction>
+    <Transaction>2025/01/23 13:36:13.000.433,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit3.pas=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\frmArticulo.pas</Transaction>
     <Transaction>2025/01/23 15:11:54.000.192,=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit2.pas</Transaction>
-    <Transaction>2025/01/23 15:12:18.000.353,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\FormularioArticulo.dfm=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit2.dfm</Transaction>
-    <Transaction>2025/01/23 15:12:18.000.353,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\FormularioArticulo.pas=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit2.pas</Transaction>
+    <Transaction>2025/01/23 15:12:18.000.353,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit2.dfm=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\FormularioArticulo.dfm</Transaction>
+    <Transaction>2025/01/23 15:12:18.000.353,C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit2.pas=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\FormularioArticulo.pas</Transaction>
+    <Transaction>2025/01/27 13:09:35.000.641,=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit2.pas</Transaction>
+    <Transaction>2025/01/27 13:11:19.000.047,=C:\Users\informatica2\Desktop\ProyectoAlmacenCasa\Unit2.pas</Transaction>
   </Transactions>
 </BorlandProject>

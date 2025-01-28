@@ -1,0 +1,62 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object LabelNombre: TLabel
+    Left = 223
+    Top = 89
+    Width = 50
+    Height = 15
+    Caption = 'Nombre: '
+  end
+  object LabelImporte: TLabel
+    Left = 223
+    Top = 110
+    Width = 45
+    Height = 15
+    Caption = 'Importe:'
+  end
+  object LabelDescripcion: TLabel
+    Left = 223
+    Top = 131
+    Width = 65
+    Height = 15
+    Caption = 'Descripci'#243'n:'
+  end
+  object EEditID: TEdit
+    Left = 64
+    Top = 83
+    Width = 153
+    Height = 23
+    Color = clMoneyGreen
+    TabOrder = 0
+    Text = 'Ingrese n'#250'mero de art'#237'culo:'
+  end
+  object ButtonBuscar: TButton
+    Left = 64
+    Top = 127
+    Width = 75
+    Height = 25
+    Caption = 'Buscar'
+    TabOrder = 1
+    OnClick = ButtonBuscarClick
+  end
+  object FDQuery1: TFDQuery
+    Connection = Form1.FDConnection1
+    Left = 144
+    Top = 376
+  end
+  object DataSource1: TDataSource
+    Left = 32
+    Top = 376
+  end
+end

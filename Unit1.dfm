@@ -12,30 +12,72 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Position = poDesigned
+  Position = poDefault
+  Visible = True
+  OnShow = FormShow
+  DesignSize = (
+    1475
+    637)
   TextHeight = 15
+  object LTitulo: TLabel
+    Left = 8
+    Top = 40
+    Width = 6
+    Height = 30
+    Color = clBtnText
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clDefault
+    Font.Height = 30
+    Font.Name = 'Segoe UI Variable Text Semibold'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = False
+  end
+  object SpeedButton1: TSpeedButton
+    Left = 48
+    Top = 168
+    Width = 23
+    Height = 22
+  end
   object DBGrid1: TDBGrid
-    Left = 0
-    Top = 59
-    Width = 499
-    Height = 263
+    Left = 8
+    Top = 93
+    Width = 1201
+    Height = 276
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Color = clAqua
     DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGrayText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = False
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clGrayText
-    TitleFont.Height = -12
+    TitleFont.Height = -20
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
   end
   object GBInsertarArticulos: TGroupBox
     AlignWithMargins = True
-    Left = 521
-    Top = 59
+    Left = 1215
+    Top = 182
     Width = 265
     Height = 304
     Caption = 'INSERTAR ARTICULOS'
     Color = clMoneyGreen
     DefaultHeaderFont = False
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clGrayText
+    Font.Height = -12
+    Font.Name = '@Adobe Gothic Std B'
+    Font.Style = [fsBold]
     HeaderFont.Charset = DEFAULT_CHARSET
     HeaderFont.Color = clBtnShadow
     HeaderFont.Height = -12
@@ -43,6 +85,7 @@ object Form1: TForm1
     HeaderFont.Style = [fsBold]
     ParentBackground = False
     ParentColor = False
+    ParentFont = False
     TabOrder = 1
     object GBCategoria: TGroupBox
       Left = 13
@@ -77,7 +120,7 @@ object Form1: TForm1
         TabOrder = 1
       end
       object RBCategoria3: TRadioButton
-        Left = 6
+        Left = 3
         Top = 57
         Width = 113
         Height = 15
@@ -100,8 +143,14 @@ object Form1: TForm1
       Height = 80
       Caption = 'Estado'
       Color = clMoneyGreen
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clGrayText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = []
       ParentBackground = False
       ParentColor = False
+      ParentFont = False
       TabOrder = 1
       object REstado1: TRadioButton
         Left = 3
@@ -267,8 +316,8 @@ object Form1: TForm1
     end
   end
   object BListado: TButton
-    Left = 0
-    Top = 0
+    Left = 1230
+    Top = 107
     Width = 138
     Height = 53
     Caption = 'Listar '#13#10'articulos'
@@ -282,14 +331,20 @@ object Form1: TForm1
     OnClick = BListadoClick
   end
   object GBEliminarArticulos: TGroupBox
-    Left = 1128
-    Top = 114
+    Left = 1215
+    Top = 508
     Width = 241
     Height = 105
     Caption = 'ELIMINAR ARTICULOS'
     Color = clMoneyGreen
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clGrayText
+    Font.Height = -12
+    Font.Name = '@Adobe Gothic Std B'
+    Font.Style = [fsBold]
     ParentBackground = False
     ParentColor = False
+    ParentFont = False
     TabOrder = 3
     object PIDByBorrar: TPanel
       Left = 5
@@ -317,23 +372,38 @@ object Form1: TForm1
       OnClick = BBorrarClick
     end
   end
-  object PageControl1: TPageControl
+  object GBDetalleArticulos: TGroupBox
     Left = 8
-    Top = 328
-    Width = 273
-    Height = 185
-    ActivePage = TabSheet1
+    Top = 377
+    Width = 169
+    Height = 80
+    Caption = 'ARTICULO A DETALLE'
+    Color = clMoneyGreen
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clGrayText
+    Font.Height = -12
+    Font.Name = '@Adobe Gothic Std B'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
     TabOrder = 4
-    object TabSheet1: TTabSheet
-      Caption = 'ARTICULO'
-      object ButtonArticulo: TButton
-        Left = 190
-        Top = 130
-        Width = 75
-        Height = 25
-        Caption = 'Detalles'
-        TabOrder = 0
-      end
+    object BDetalles: TButton
+      Left = 3
+      Top = 45
+      Width = 75
+      Height = 28
+      Caption = 'Detalles'
+      TabOrder = 0
+      OnClick = BDetallesClick
+    end
+    object PArticuloDetalle: TPanel
+      Left = 3
+      Top = 16
+      Width = 150
+      Height = 23
+      Caption = 'Ingrese el ID de articulo '
+      TabOrder = 1
     end
   end
   object FDConnection1: TFDConnection
@@ -344,25 +414,26 @@ object Form1: TForm1
       'Port=3306'
       'User_Name=root'
       'Password=root')
-    Left = 24
-    Top = 544
+    Connected = True
+    Left = 400
+    Top = 560
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 8
+    Left = 32
     Top = 560
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    Left = 8
-    Top = 528
+    Left = 304
+    Top = 560
   end
   object SQLConnection1: TSQLConnection
-    Left = 48
-    Top = 544
+    Left = 232
+    Top = 560
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 8
-    Top = 576
+    Left = 128
+    Top = 560
   end
 end

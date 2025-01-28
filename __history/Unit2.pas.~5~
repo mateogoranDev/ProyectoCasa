@@ -1,0 +1,116 @@
+unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm2 = class(TForm)
+    EEditID: TEdit;
+    ButtonBuscar: TButton;
+    LabelNombre: TLabel;
+    LabelDescripcion: TLabel;
+    LabelImporte: TLabel;
+    Image1: TImage;
+    FDQuery1: TFDQuery;
+    DataSource1: TDataSource;
+    procedure ButtonBuscarClick(Sender: TObject);
+   procedure SetArticuloDatos(const Nombre, Descripcion, Importe: string; Foto: TStream);
+
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1;
+
+procedure TForm2.SetArticuloDatos(const Nombre, Descripcion, Importe: string; Foto: TStream);
+begin
+  // Asignar los valores a los controles correspondientes
+  LabelNombre.Caption := 'Nombre: ' + Nombre;
+  LabelDescripcion.Caption := 'Descripción: ' + Descripcion;
+  LabelImporte.Caption := 'Importe: ' + Importe;
+
+  // Si hay foto, cargarla en el control TImage
+  if Foto <> nil then
+  begin
+    Image1.Picture.Bitmap.LoadFromStream(Foto);
+  end
+  else
+  begin
+    Image1.Picture := nil;  // o una imagen predeterminada
+  end;
+end;
+
+procedure TForm2.ButtonBuscarClick(Sender: TObject);
+var
+  idArticulo: Integer;
+  FotoStream: TMemoryStream;
+begin
+  // Validar que se haya ingresado un ID
+  if EEditID.Text = '' then
+  begin
+    ShowMessage('Por favor, introduce un ID de artículo.');
+    Exit;
+  end;
+
+  // Validar que el ID sea numérico
+  if not TryStrToInt(EEditID.Text, idArticulo) then
+  begin
+    ShowMessage('El ID del artículo debe ser un número válido.');
+    Exit;
+  end;
+
+  // Realizar la consulta para obtener los detalles del artículo por IDArticulo
+  try
+    FDQuery1.SQL.Text := 'SELECT nombre, descripcion, importe, foto FROM articulo WHERE idArticulo = :idArticulo';
+    FDQuery1.ParamByName('idArticulo').AsInteger := idArticulo;
+    FDQuery1.Open;
+
+    if FDQuery1.RecordCount = 0 then
+    begin
+      ShowMessage('No se encontró ningún artículo con el ID proporcionado.');
+      Exit;
+    end;
+
+    // Crear el flujo para la foto (si existe)
+    FotoStream := TMemoryStream.Create;
+    try
+      if not FDQuery1.FieldByName('foto').IsNull then
+      begin
+        FotoStream.LoadFromStream(FDQuery1.CreateBlobStream(FDQuery1.FieldByName('foto'), bmRead));
+        FotoStream.Position := 0;  // Asegúrate de reiniciar la posición
+      end
+      else
+        FotoStream := nil; // No hay foto
+
+      // Usar el procedimiento para asignar los valores a los controles
+      SetArticuloDatos(
+        FDQuery1.FieldByName('nombre').AsString,
+        FDQuery1.FieldByName('descripcion').AsString,
+        FDQuery1.FieldByName('importe').AsString,
+        FotoStream
+      );
+    finally
+      FotoStream.Free;  // Liberar la memoria
+    end;
+
+  except
+    on E: Exception do
+      ShowMessage('Error al buscar el artículo: ' + E.Message);
+  end;
+end;
+
+end.
+
