@@ -20,9 +20,9 @@ object Form1: TForm1
     637)
   TextHeight = 15
   object LTitulo: TLabel
-    Left = 8
-    Top = 40
-    Width = 6
+    Left = 288
+    Top = 56
+    Width = 235
     Height = 30
     Color = clBtnText
     Font.Charset = DEFAULT_CHARSET
@@ -42,10 +42,10 @@ object Form1: TForm1
     Height = 22
   end
   object DBGrid1: TDBGrid
-    Left = 8
-    Top = 93
-    Width = 1201
-    Height = 276
+    Left = 288
+    Top = 118
+    Width = 681
+    Height = 420
     Anchors = [akLeft, akTop, akRight, akBottom]
     Color = clAqua
     DataSource = DataSource1
@@ -66,8 +66,8 @@ object Form1: TForm1
   end
   object GBInsertarArticulos: TGroupBox
     AlignWithMargins = True
-    Left = 1215
-    Top = 182
+    Left = 8
+    Top = 118
     Width = 265
     Height = 304
     Caption = 'INSERTAR ARTICULOS'
@@ -316,8 +316,8 @@ object Form1: TForm1
     end
   end
   object BListado: TButton
-    Left = 1230
-    Top = 107
+    Left = 8
+    Top = 50
     Width = 138
     Height = 53
     Caption = 'Listar '#13#10'articulos'
@@ -331,9 +331,9 @@ object Form1: TForm1
     OnClick = BListadoClick
   end
   object GBEliminarArticulos: TGroupBox
-    Left = 1215
-    Top = 508
-    Width = 241
+    Left = 8
+    Top = 514
+    Width = 265
     Height = 105
     Caption = 'ELIMINAR ARTICULOS'
     Color = clMoneyGreen
@@ -355,27 +355,26 @@ object Form1: TForm1
       TabOrder = 0
     end
     object EBorrar: TEdit
-      Left = 135
-      Top = 18
+      Left = 63
+      Top = 47
       Width = 90
       Height = 23
       TabOrder = 1
       Text = ' ID para borrar'
     end
     object BBorrar: TButton
-      Left = 5
+      Left = 13
       Top = 47
-      Width = 94
+      Width = 44
       Height = 23
-      Caption = 'Eliminar registro'
       TabOrder = 2
       OnClick = BBorrarClick
     end
   end
   object GBDetalleArticulos: TGroupBox
     Left = 8
-    Top = 377
-    Width = 169
+    Top = 428
+    Width = 265
     Height = 80
     Caption = 'ARTICULO A DETALLE'
     Color = clMoneyGreen
@@ -393,16 +392,16 @@ object Form1: TForm1
       Top = 45
       Width = 75
       Height = 28
-      Caption = 'Detalles'
+      Caption = 'FOTO'
       TabOrder = 0
       OnClick = BDetallesClick
     end
     object PArticuloDetalle: TPanel
       Left = 3
       Top = 16
-      Width = 150
+      Width = 158
       Height = 23
-      Caption = 'Ingrese el ID de articulo '
+      Caption = 'Pulse para ver los detalles'
       TabOrder = 1
     end
   end
@@ -415,25 +414,25 @@ object Form1: TForm1
       'User_Name=root'
       'Password=root')
     Connected = True
-    Left = 400
-    Top = 560
+    Left = 1360
+    Top = 512
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 32
-    Top = 560
+    Left = 1360
+    Top = 528
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    Left = 304
-    Top = 560
+    Left = 1360
+    Top = 520
   end
   object SQLConnection1: TSQLConnection
-    Left = 232
-    Top = 560
+    Left = 1360
+    Top = 528
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 128
-    Top = 560
+    Left = 1360
+    Top = 536
   end
 end

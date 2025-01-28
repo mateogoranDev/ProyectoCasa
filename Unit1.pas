@@ -184,7 +184,7 @@ begin
       FDQuery1.Close;
 
     // Configura y ejecuta la consulta SQL
-    FDQuery1.SQL.Text := 'SELECT * FROM articulo';
+    FDQuery1.SQL.Text := 'SELECT idArticulo, nombre, categoria ,estado, importe,fechaCompra  FROM articulo order by nombre';
     FDQuery1.Open; // Abre el conjunto de datos y carga los resultados
 
     // Ajustar las columnas a un ancho fijo de 10 caracteres
