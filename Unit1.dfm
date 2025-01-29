@@ -4,7 +4,7 @@ object Form1: TForm1
   BorderStyle = bsDialog
   BorderWidth = 3
   Caption = 'Form1'
-  ClientHeight = 637
+  ClientHeight = 640
   ClientWidth = 1475
   Color = clAqua
   Font.Charset = DEFAULT_CHARSET
@@ -17,12 +17,12 @@ object Form1: TForm1
   OnShow = FormShow
   DesignSize = (
     1475
-    637)
+    640)
   TextHeight = 15
   object LTitulo: TLabel
     Left = 288
     Top = 56
-    Width = 235
+    Width = 6
     Height = 30
     Color = clBtnText
     Font.Charset = DEFAULT_CHARSET
@@ -42,10 +42,10 @@ object Form1: TForm1
     Height = 22
   end
   object DBGrid1: TDBGrid
-    Left = 288
-    Top = 118
-    Width = 681
-    Height = 420
+    Left = 279
+    Top = 135
+    Width = 777
+    Height = 423
     Anchors = [akLeft, akTop, akRight, akBottom]
     Color = clAqua
     DataSource = DataSource1
@@ -355,18 +355,25 @@ object Form1: TForm1
       TabOrder = 0
     end
     object EBorrar: TEdit
-      Left = 63
+      Left = 79
       Top = 47
       Width = 90
       Height = 23
       TabOrder = 1
-      Text = ' ID para borrar'
+      Text = 'Add ID'
     end
     object BBorrar: TButton
       Left = 13
       Top = 47
-      Width = 44
+      Width = 50
       Height = 23
+      Caption = 'BORRAR'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clGrayText
+      Font.Height = -12
+      Font.Name = '@Adobe Gothic Std B'
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 2
       OnClick = BBorrarClick
     end
@@ -413,26 +420,25 @@ object Form1: TForm1
       'Port=3306'
       'User_Name=root'
       'Password=root')
-    Connected = True
-    Left = 1360
-    Top = 512
+    Left = 1304
+    Top = 376
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
-    Left = 1360
-    Top = 528
+    Left = 1296
+    Top = 296
   end
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
-    Left = 1360
-    Top = 520
+    Left = 1184
+    Top = 392
   end
   object SQLConnection1: TSQLConnection
-    Left = 1360
-    Top = 528
+    Left = 1176
+    Top = 328
   end
   object DataSource1: TDataSource
     DataSet = FDQuery1
-    Left = 1360
-    Top = 536
+    Left = 1176
+    Top = 272
   end
 end

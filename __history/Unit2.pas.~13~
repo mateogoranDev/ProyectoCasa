@@ -1,0 +1,107 @@
+﻿unit Unit2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Imaging.jpeg, FireDAC.Stan.Pool;
+
+type
+  TForm2 = class(TForm)
+
+    EEditID: TEdit;
+    ButtonBuscar: TButton;
+    LabelNombre: TLabel;
+    LabelDescripcion: TLabel;
+    LabelImporte: TLabel;
+    FDQuery1: TFDQuery;
+    DataSource1: TDataSource;
+    GBDetalleArticulo: TGroupBox;
+    PNumeroArticulo: TPanel;
+    ImageDefault: TImage;
+    BAddFoto: TButton;
+    EAddFoto: TEdit;
+    GBAddFotografia: TGroupBox;
+    Panel1: TPanel;
+    OpenDialog1: TOpenDialog;
+    procedure SetArticuloDatos(const Nombre, Descripcion, Importe: string;
+      Foto: TStream);
+    procedure FormCreate(Sender: TObject);
+    procedure ButtonBuscarClick(Sender: TObject);
+    procedure BAddFotoClick(Sender: TObject);
+
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+uses Unit1;
+
+procedure TForm2.BAddFotoClick(Sender: TObject);
+var
+  OpenDialog1: TOpenDialog;
+  FDQuery1: TFDQuery;
+  rutaArchivo: string;
+
+begin
+  OpenDialog1 := TOpenDialog.Create(Self);
+  try
+    OpenDialog1.Filter := 'Archivos de imagen (*.jpg;*.png)|*.jpg;*.png';
+  finally
+    FreeAndNil(OpenDialog1);
+
+  end;
+end;
+
+procedure TForm2.ButtonBuscarClick(Sender: TObject);
+var
+  numeroFoto: Integer;
+
+begin
+  try
+    numeroFoto := StrToInt(EEditID.Text);
+
+  except
+    ShowMessage('Por favor introduce un número valido. ');
+
+  end;
+end;
+
+procedure TForm2.FormCreate(Sender: TObject);
+begin
+  // Cargar una imagen por defecto en caso de que no se encuentre el artículo
+  ImageDefault.Picture.LoadFromFile
+    ('C:\Users\informatica2\Desktop\Warehouse\imagenes\porDefecto.jpg');
+  if not FileExists('C:\Users\informatica2\Downloads\porDefecto.jpg') then
+    ShowMessage
+      ('La imagen por defecto no se encontró en la ruta especificada.');
+end;
+
+procedure TForm2.SetArticuloDatos(const Nombre, Descripcion, Importe: string;
+  Foto: TStream);
+var
+  RutaImagen: string;
+begin
+  // Asignar los valores a los controles correspondientes
+  LabelNombre.Caption := 'Nombre:  ' + Nombre;
+  LabelDescripcion.Caption := 'Descripción:  ' + Descripcion;
+  LabelImporte.Caption := 'Importe:  ' + Importe;
+
+  // Definir la ruta relativa a la carpeta "imagenes"
+  RutaImagen := ExtractFilePath(Application.ExeName) +
+    'C:\Users\informatica2\Desktop\Warehouse\imagenes';
+
+end;
+
+end.

@@ -1,0 +1,162 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 676
+  ClientWidth = 862
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  OnCreate = FormCreate
+  TextHeight = 15
+  object GBDetalleArticulo: TGroupBox
+    Left = 88
+    Top = 60
+    Width = 521
+    Height = 365
+    Caption = 'Detalle del articulo'
+    Color = clMoneyGreen
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Fira Code'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 0
+    object LabelDescripcion: TLabel
+      Left = 295
+      Top = 158
+      Width = 83
+      Height = 18
+      Caption = 'Descripci'#243'n:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 18
+      Font.Name = 'Roboto'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelImporte: TLabel
+      Left = 295
+      Top = 215
+      Width = 55
+      Height = 18
+      Caption = 'Importe:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 18
+      Font.Name = 'Roboto'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object LabelNombre: TLabel
+      Left = 295
+      Top = 84
+      Width = 61
+      Height = 18
+      Caption = 'Nombre: '
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = 18
+      Font.Name = 'Roboto'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object ImageDefault: TImage
+      Left = 32
+      Top = 72
+      Width = 217
+      Height = 233
+      Stretch = True
+    end
+    object EEditID: TEdit
+      Left = 450
+      Top = 268
+      Width = 52
+      Height = 23
+      Color = clMoneyGreen
+      TabOrder = 0
+    end
+    object ButtonBuscar: TButton
+      Left = 428
+      Top = 308
+      Width = 75
+      Height = 25
+      Caption = 'Buscar'
+      TabOrder = 1
+      OnClick = ButtonBuscarClick
+    end
+    object PNumeroArticulo: TPanel
+      Left = 346
+      Top = 239
+      Width = 160
+      Height = 23
+      Caption = 'Numero de articulo:'
+      TabOrder = 2
+    end
+  end
+  object GBAddFotografia: TGroupBox
+    Left = 615
+    Top = 60
+    Width = 185
+    Height = 105
+    Caption = 'A'#241'adir fotografia:'
+    Color = clMoneyGreen
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Fira Code'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 1
+    object BAddFoto: TButton
+      Left = 102
+      Top = 63
+      Width = 75
+      Height = 25
+      Caption = 'ADD'
+      TabOrder = 0
+      OnClick = BAddFotoClick
+    end
+    object EAddFoto: TEdit
+      Left = 144
+      Top = 34
+      Width = 33
+      Height = 23
+      Color = clMoneyGreen
+      TabOrder = 1
+    end
+    object Panel1: TPanel
+      Left = 6
+      Top = 32
+      Width = 132
+      Height = 26
+      Caption = 'ID de la foto'
+      TabOrder = 2
+    end
+  end
+  object FDQuery1: TFDQuery
+    Connection = Form1.FDConnection1
+    Left = 88
+    Top = 480
+  end
+  object DataSource1: TDataSource
+    Left = 24
+    Top = 480
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 152
+    Top = 480
+  end
+  object FDConnection1: TFDConnection
+    Left = 688
+    Top = 456
+  end
+end

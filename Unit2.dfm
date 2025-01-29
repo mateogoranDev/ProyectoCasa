@@ -2,8 +2,8 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Form2'
-  ClientHeight = 569
-  ClientWidth = 761
+  ClientHeight = 676
+  ClientWidth = 862
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,8 +13,8 @@ object Form2: TForm2
   OnCreate = FormCreate
   TextHeight = 15
   object GBDetalleArticulo: TGroupBox
-    Left = 120
-    Top = 92
+    Left = 88
+    Top = 60
     Width = 521
     Height = 365
     Caption = 'Detalle del articulo'
@@ -22,7 +22,7 @@ object Form2: TForm2
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -12
-    Font.Name = '@Adobe Gothic Std B'
+    Font.Name = 'Fira Code'
     Font.Style = [fsBold]
     ParentBackground = False
     ParentColor = False
@@ -89,6 +89,7 @@ object Form2: TForm2
       Height = 25
       Caption = 'Buscar'
       TabOrder = 1
+      OnClick = ButtonBuscarClick
     end
     object PNumeroArticulo: TPanel
       Left = 346
@@ -99,13 +100,63 @@ object Form2: TForm2
       TabOrder = 2
     end
   end
+  object GBAddFotografia: TGroupBox
+    Left = 615
+    Top = 60
+    Width = 185
+    Height = 105
+    Caption = 'A'#241'adir fotografia:'
+    Color = clMoneyGreen
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Fira Code'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 1
+    object BAddFoto: TButton
+      Left = 102
+      Top = 63
+      Width = 75
+      Height = 25
+      Caption = 'ADD'
+      TabOrder = 0
+      OnClick = BAddFotoClick
+    end
+    object EAddFoto: TEdit
+      Left = 144
+      Top = 34
+      Width = 33
+      Height = 23
+      Color = clMoneyGreen
+      TabOrder = 1
+    end
+    object Panel1: TPanel
+      Left = 6
+      Top = 32
+      Width = 132
+      Height = 26
+      Caption = 'ID de la foto'
+      TabOrder = 2
+    end
+  end
   object FDQuery1: TFDQuery
     Connection = Form1.FDConnection1
     Left = 88
     Top = 480
   end
   object DataSource1: TDataSource
-    Left = 16
+    Left = 24
+    Top = 480
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 152
+    Top = 480
+  end
+  object FDConnection1: TFDConnection
+    Left = 688
     Top = 456
   end
 end
