@@ -50,12 +50,32 @@ implementation
 
 uses Unit1;
 
+
+ procedure TForm2.ButtonBuscarClick(Sender: TObject);
+var
+  NumeroFoto: Integer;
+begin
+  try
+
+  except
+    on E: Exception do
+      ShowMessage('Por favor introduce un número válido: ' + E.Message);
+  end;
+end;
+
+
+
+
+
+//Añadir fotografias a la base de datos desde el pc hasta la carpeta por direccion
 procedure TForm2.BAddFotoClick(Sender: TObject);
 var
   OpenDialog: TOpenDialog;
   ImagePath: string;
   FDQuery: TFDQuery;
   ID: Integer;
+  ExistingPhoto: string;
+  Overwrite: Integer;
 begin
   try
     // Configurar la conexión
@@ -67,6 +87,40 @@ begin
     FDConnection1.Params.Add('User_Name=root');
     FDConnection1.Params.Add('Password=root');
     FDConnection1.Connected := True;
+
+    // Validar el ID ingresado
+    if not TryStrToInt(EAddFoto.Text, ID) then
+    begin
+      ShowMessage('Por favor, introduce un ID válido.');
+      Exit;
+    end;
+
+    // Crear la consulta para verificar si ya existe una foto
+    FDQuery := TFDQuery.Create(nil);
+    try
+      FDQuery.Connection := FDConnection1;
+      FDQuery.SQL.Text := 'SELECT foto FROM articulo WHERE idArticulo = :idArticulo';
+      FDQuery.Params.ParamByName('idArticulo').AsInteger := ID;
+      FDQuery.Open;
+
+      if not FDQuery.IsEmpty then
+      begin
+        ExistingPhoto := FDQuery.FieldByName('foto').AsString;
+
+        if ExistingPhoto <> '' then
+        begin
+          Overwrite := MessageDlg('Ya existe una fotografía asociada a este ID. ¿Deseas sobrescribirla?', mtConfirmation, [mbYes, mbNo], 0);
+
+          if Overwrite = mrNo then
+          begin
+            ShowMessage('Operación cancelada.');
+            Exit;
+          end;
+        end;
+      end;
+    finally
+      FDQuery.Free;
+    end;
 
     // Crear el diálogo para seleccionar la imagen
     OpenDialog := TOpenDialog.Create(nil);
@@ -82,13 +136,6 @@ begin
 
       // Obtener la ruta de la imagen seleccionada
       ImagePath := OpenDialog.FileName;
-
-      // Validar el ID ingresado
-      if not TryStrToInt(EAddFoto.Text, ID) then
-      begin
-        ShowMessage('Por favor, introduce un ID válido.');
-        Exit;
-      end;
 
       // Crear la consulta SQL para actualizar el campo foto
       FDQuery := TFDQuery.Create(nil);
@@ -115,19 +162,41 @@ begin
   end;
 end;
 
-procedure TForm2.ButtonBuscarClick(Sender: TObject);
-var
-  NumeroFoto: Integer;
-begin
-  try
 
-  except
-    on E: Exception do
-      ShowMessage('Por favor introduce un número válido: ' + E.Message);
-  end;
+
+
+
+
+
+
+
+
+
+
+
+procedure TForm2.SetArticuloDatos(const Nombre, Descripcion, Importe: string;
+  Foto: TStream);
+var
+  RutaImagen: string;
+begin
+  // Asignar los valores a los controles correspondientes
+  LabelNombre.Caption := 'Nombre:  ' + Nombre;
+  LabelDescripcion.Caption := 'Descripción:  ' + Descripcion;
+  LabelImporte.Caption := 'Importe:  ' + Importe;
+
+  // Definir la ruta relativa a la carpeta "imagenes"
+  RutaImagen := ExtractFilePath(Application.ExeName) +
+    'C:\Users\informatica2\Desktop\Warehouse\imagenes';
+
 end;
 
-procedure TForm2.FormCreate(Sender: TObject);
+
+
+
+
+
+ //Creación de formulario
+ procedure TForm2.FormCreate(Sender: TObject);
 begin
   if FDQuery1.Active then
     FDQuery1.Close;
@@ -150,21 +219,4 @@ begin
   end;
 
 end;
-
-procedure TForm2.SetArticuloDatos(const Nombre, Descripcion, Importe: string;
-  Foto: TStream);
-var
-  RutaImagen: string;
-begin
-  // Asignar los valores a los controles correspondientes
-  LabelNombre.Caption := 'Nombre:  ' + Nombre;
-  LabelDescripcion.Caption := 'Descripción:  ' + Descripcion;
-  LabelImporte.Caption := 'Importe:  ' + Importe;
-
-  // Definir la ruta relativa a la carpeta "imagenes"
-  RutaImagen := ExtractFilePath(Application.ExeName) +
-    'C:\Users\informatica2\Desktop\Warehouse\imagenes';
-
-end;
-
 end.

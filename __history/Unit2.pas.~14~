@@ -1,4 +1,4 @@
-unit Unit2;
+﻿unit Unit2;
 
 interface
 
@@ -50,24 +50,6 @@ implementation
 
 uses Unit1;
 
-
- procedure TForm2.ButtonBuscarClick(Sender: TObject);
-var
-  NumeroFoto: Integer;
-begin
-  try
-
-  except
-    on E: Exception do
-      ShowMessage('Por favor introduce un número válido: ' + E.Message);
-  end;
-end;
-
-
-
-
-
-//Añadir fotografias a la base de datos desde el pc hasta la carpeta por direccion
 procedure TForm2.BAddFotoClick(Sender: TObject);
 var
   OpenDialog: TOpenDialog;
@@ -133,41 +115,19 @@ begin
   end;
 end;
 
-
-
-
-
-
-
-
-
-
-
-
-
-procedure TForm2.SetArticuloDatos(const Nombre, Descripcion, Importe: string;
-  Foto: TStream);
+procedure TForm2.ButtonBuscarClick(Sender: TObject);
 var
-  RutaImagen: string;
+  NumeroFoto: Integer;
 begin
-  // Asignar los valores a los controles correspondientes
-  LabelNombre.Caption := 'Nombre:  ' + Nombre;
-  LabelDescripcion.Caption := 'Descripción:  ' + Descripcion;
-  LabelImporte.Caption := 'Importe:  ' + Importe;
+  try
 
-  // Definir la ruta relativa a la carpeta "imagenes"
-  RutaImagen := ExtractFilePath(Application.ExeName) +
-    'C:\Users\informatica2\Desktop\Warehouse\imagenes';
-
+  except
+    on E: Exception do
+      ShowMessage('Por favor introduce un número válido: ' + E.Message);
+  end;
 end;
 
-
-
-
-
-
- //Creación de formulario
- procedure TForm2.FormCreate(Sender: TObject);
+procedure TForm2.FormCreate(Sender: TObject);
 begin
   if FDQuery1.Active then
     FDQuery1.Close;
@@ -190,4 +150,21 @@ begin
   end;
 
 end;
+
+procedure TForm2.SetArticuloDatos(const Nombre, Descripcion, Importe: string;
+  Foto: TStream);
+var
+  RutaImagen: string;
+begin
+  // Asignar los valores a los controles correspondientes
+  LabelNombre.Caption := 'Nombre:  ' + Nombre;
+  LabelDescripcion.Caption := 'Descripción:  ' + Descripcion;
+  LabelImporte.Caption := 'Importe:  ' + Importe;
+
+  // Definir la ruta relativa a la carpeta "imagenes"
+  RutaImagen := ExtractFilePath(Application.ExeName) +
+    'C:\Users\informatica2\Desktop\Warehouse\imagenes';
+
+end;
+
 end.
